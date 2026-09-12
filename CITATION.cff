@@ -1,0 +1,53 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite both the software and the paper it implements."
+title: "haar-thinning: online Haar-thinning of i.i.d. samples into low-discrepancy points"
+type: software
+version: 0.1.0
+date-released: 2026-09-11
+license: MIT
+authors:
+  - family-names: Ezeunala
+    given-names: Ekene
+    affiliation: University of Chicago
+repository-code: "https://github.com/ekene-ezeunala/haar-thinning"
+keywords:
+  - quasi-Monte Carlo
+  - discrepancy
+  - online thinning
+  - Haar functions
+  - numerical integration
+preferred-citation:
+  type: article
+  title: "Quasi-Monte Carlo Beyond Hardy--Krause II: (1 + epsilon) n Samples Suffice"
+  authors:
+    - family-names: Ezeunala
+      given-names: Ekene
+    - family-names: Jha
+      given-names: Agastya Vibhuti
+    - family-names: Jiang
+      given-names: Haotian
+  year: 2026
+references:
+  - type: article
+    title: "The power of online thinning in reducing discrepancy"
+    authors:
+      - family-names: Dwivedi
+        given-names: Raaz
+      - family-names: Feldheim
+        given-names: Ohad N.
+      - family-names: Gurel-Gurevich
+        given-names: Ori
+      - family-names: Ramdas
+        given-names: Aaditya
+    journal: "Probability Theory and Related Fields"
+    year: 2019
+    volume: 174
+    pages: "103-131"
+  - type: article
+    title: "Quasi-Monte Carlo Beyond Hardy--Krause"
+    authors:
+      - family-names: Bansal
+        given-names: Nikhil
+      - family-names: Jiang
+        given-names: Haotian
+    year: 2025

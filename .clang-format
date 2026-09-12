@@ -1,0 +1,19 @@
+BasedOnStyle: Google
+IndentWidth: 4
+ColumnLimit: 120
+AccessModifierOffset: -4
+AllowShortFunctionsOnASingleLine: Inline
+AllowShortIfStatementsOnASingleLine: WithoutElse
+AllowShortLoopsOnASingleLine: true
+DerivePointerAlignment: false
+PointerAlignment: Left
+IncludeBlocks: Regroup
+IncludeCategories:
+  - Regex: '^<haar/'
+    Priority: 3
+  - Regex: '^"haar/'
+    Priority: 3
+  - Regex: '^"'
+    Priority: 2
+  - Regex: '^<'
+    Priority: 1
