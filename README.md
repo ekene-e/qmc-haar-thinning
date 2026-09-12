@@ -1,38 +1,3 @@
-# haar-thinning
-
-Online **Haar-thinning**: turn a stream of (1 + ε) n i.i.d. uniform samples in
-[0,1)^d into n points with polylogarithmic discrepancy and quasi-Monte Carlo
-integration error, one sample at a time.
-
-A header-only C++23 library, a command-line tool, tests and benchmarks
-implementing
-
-> Ekene Ezeunala, Agastya Vibhuti Jha, Haotian Jiang.
-> **Quasi-Monte Carlo Beyond Hardy–Krause II: (1 + ε) n Samples Suffice.**
-
-which builds on the Haar-thinning strategy of Dwivedi, Feldheim,
-Gurel-Gurevich and Ramdas (*The power of online thinning in reducing
-discrepancy*, PTRF 2019).
-
-## What it does
-
-Monte Carlo integration with n random points has error σ(f)/√n. Quasi-Monte
-Carlo point sets reach Õ(1/n) but need a deterministic construction and a
-function of bounded Hardy–Krause variation. Online thinning sits in between:
-samples arrive one by one, the algorithm keeps or discards each (never two in
-a row), and after consuming about (1 + ε/2) n samples it has retained n points
-such that
-
-* **integration error** is Õ_d(σ_SO(f)/n), where the smoothed-out variation
-  σ_SO(f) can be far smaller than the Hardy–Krause variation
-  (Theorem 1.2 — *uniformly-shifted Haar-thinning*), and
-* **star discrepancy** is O_d(log^{d+1} n) (Theorem 1.3 — *linear-feedback
-  Haar-thinning*).
-
-Each decision costs Õ_d(1): the algorithm keeps a counter φ_t(H) for every
-Haar function H up to a resolution, and rejects a candidate x with a
-probability that depends on the counters of the Haar functions nonzero at x.
-
 ## Quick start
 
 ```sh
