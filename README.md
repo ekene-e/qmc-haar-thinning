@@ -53,47 +53,6 @@ while (thinner.size() < n) {
   `find_package(haar 0.1 REQUIRED)` and link `haar::haar`.
 * **Copy the headers**: everything is under `include/haar/`.
 
-## Options
-
-| field | default | meaning |
-|---|---|---|
-| `dim` | 1 | dimension d |
-| `epsilon` | 0.5 | each sample is rejected with probability ≤ ε; about (1 + ε/2) n samples are consumed for n points |
-| `feedback` | `linear` | `sign` = Haar-thinning of DFG+19 (eq. 3.1, Theorem 1.2); `linear` = linear-feedback Haar-thinning (eq. 4.1, Theorem 1.3) |
-| `shift` | `random` | uniform random shift of the Haar system (Section 3.1); `none` or `fixed` (`shift_vector`) |
-| `scale_set` | `hyperbolic` | Haar scale vectors used: `hyperbolic` (Σ j_i ≤ level, as in DFG+19) or `box` (max j_i ≤ level, the paper's Π_{≤ℓ}) |
-| `level` | automatic | resolution L (or ℓ); automatic = ⌈log₂ n⌉ + `level_offset` from `expected_n`, or adaptive |
-| `expected_n` | unset | intended n; fixes the level up front (`haar::thin` sets it) |
-| `saturation_bound` | automatic | the bound B of the linear rule; smaller = stronger feedback |
-| `on_saturation` | `clamp` | what to do when the linear field exceeds B: clamp the density (still a valid strategy) or `fail` (throw) |
-| `max_functions_per_sample` | 2048 | work cap for the automatic level rule |
-| `dense_budget_bytes` | 512 MiB | memory cap for the counter table (automatic level rule and dense/sparse choice) |
-| `storage` | `automatic` | dense array if it fits the budget, otherwise a hash table |
-| `seed` | `0x5EED` | seed for coins, shift and generated samples |
-
-`Thinner::describe()` prints the effective configuration;
-`Thinner::stats()` reports samples offered/retained/rejected, saturations,
-rebuilds, and the largest field seen.
-
-### Which settings to use
-
-* **Integration of smooth functions** (the beyond-Hardy–Krause regime):
-  the defaults (`linear` + `random` shift).
-* **Smallest star discrepancy**: `shift = none`. The shift costs up to a
-  factor 2^d in the discrepancy bound; it is what buys the σ_SO(f) integration
-  guarantee.
-* **Faithful Theorem 1.2 algorithm**: `feedback = sign`, `shift = random`.
-  In practice its Haar discrepancies scale like N/ε and its star discrepancy
-  is only at Monte Carlo level for n ≲ 10⁵; `linear` is 2–3× better.
-* **Best empirical discrepancy**: `saturation_bound = 1` — the greedy limit
-  (reject with probability ε whenever the field is positive). This is outside
-  the paper's analysis but consistently wins in the benchmarks.
-* **d ≥ 4**: work per sample is Θ(log^d n) in the uncapped algorithm; the
-  automatic rule lowers the resolution until at most
-  `max_functions_per_sample` Haar functions are visited per sample. Raise the
-  cap (and the memory budget) if you can afford it.
-* **Sequences**: leave `level` and `expected_n` unset and feed samples; the
-  resolution grows with the retained count (footnote 7 of the paper).
 
 ## Testing and benchmarking
 
@@ -123,4 +82,4 @@ Please cite the paper (see `CITATION.cff`):
 
 ## License
 
-MIT. See `LICENSE`.
+MIT. See `LICENSE`. This repository was prepared with the aid of Claude Fable 5.1.
